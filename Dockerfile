@@ -12,6 +12,13 @@ ARG UNIFI_BRANCH="stable"
 ARG DEBIAN_FRONTEND="noninteractive"
 
 RUN \
+ echo "**** update sources ****" && \
+ apt-get update && \
+ apt-get install -y gnupg && \
+ curl -ssL https://www.mongodb.org/static/pgp/server-3.4.asc | apt-key add - && \
+ echo "deb https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+
+RUN \
   echo "**** install packages ****" && \
   apt-get update && \
   apt-get install -y \
@@ -19,7 +26,7 @@ RUN \
     jsvc \
     libcap2 \
     logrotate \
-    mongodb-server \
+    mongodb-org-server \
     openjdk-8-jre-headless \
     wget && \
   echo "**** install unifi ****" && \
