@@ -1,0 +1,14 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+cd /usr/lib/unifi/lib || exit 1
+mkdir backups
+mv log4j-{api,core,slf4j-impl}-2.11.1.jar backups/
+ln -s log4j-api-2.12.3.jar log4j-api-2.11.1.jar
+ln -s log4j-core-2.12.3.jar log4j-core-2.11.1.jar
+ln -s log4j-slf4j-impl-2.12.3.jar log4j-slf4j-impl-2.11.1.jar
+
+cd /usr/lib/unifi/webapps/ROOT/app-unifi/js || exit 1
+mkdir backups
+mv base.js backups/
+ln -s base.js.patched base.js

@@ -49,6 +49,8 @@ RUN \
 
 # add local files
 COPY root/ /
+COPY patches/log4j/ /usr/lib/unifi/lib/
+COPY patches/js/ /usr/lib/unifi/webapps/ROOT/app-unifi/js/
 
 # Volumes and Ports
 WORKDIR /usr/lib/unifi
