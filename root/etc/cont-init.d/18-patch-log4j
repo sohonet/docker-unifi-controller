@@ -1,14 +1,24 @@
 #!/usr/bin/with-contenv bash
 # shellcheck shell=bash
 
+good_md5_api=10883b213646eea83346a8a58beba919
+good_md5_core=c3e718f4c2be7f1bfcccb170c0331fd2
+good_md5_slf4j=b46abfc25538aaaae78e450498535c49
+good_md5_basejs=6a39da7a0aea3813039c799fe87fb898
+
 cd /usr/lib/unifi/lib || exit 1
-mkdir backups
+[ ! -d backups ] && mkdir backups
 mv log4j-{api,core,slf4j-impl}-2.11.1.jar backups/
 ln -s log4j-api-2.12.3.jar log4j-api-2.11.1.jar
 ln -s log4j-core-2.12.3.jar log4j-core-2.11.1.jar
 ln -s log4j-slf4j-impl-2.12.3.jar log4j-slf4j-impl-2.11.1.jar
 
 cd /usr/lib/unifi/webapps/ROOT/app-unifi/js || exit 1
-mkdir backups
-mv base.js backups/
-ln -s base.js.patched base.js
+[ ! -d backups ] && mkdir backups
+
+current_md5="$(md5sum base.js)"
+
+if [ "$current_md5" != "$good_md5_basejs" ]; then
+    mv base.js backups/
+    mv base.js.patched base.js
+fi
