@@ -45,3 +45,5 @@ if [ "$current_js_hash" != "$good_md5_basejs" ]; then
     mv base.js backups/
     mv base.js.patched base.js
 fi
+
+exit 0
