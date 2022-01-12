@@ -39,6 +39,7 @@ done
 cd /usr/lib/unifi/webapps/ROOT/app-unifi/js || exit 1
 [ ! -d backups ] && mkdir backups
 
+rm -f base.js.br
 current_js_hash="$(md5sum base.js)"
 
 if [ "$current_js_hash" != "$good_md5_basejs" ]; then
