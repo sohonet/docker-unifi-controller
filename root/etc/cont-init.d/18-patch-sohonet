@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 # shellcheck shell=bash
 
-good_md5_basejs=e5f13154ec7a2d88cc5a3490cf6c96cd
+good_md5_basejs=8ccae22747ffd62b90321d3a59c9497e
 
 cd /usr/lib/unifi/webapps/ROOT/app-unifi/js || exit 1
 [ ! -d backups ] && mkdir backups
